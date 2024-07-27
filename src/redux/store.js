@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
-import wikiReducer from './slices/wikiSlice'
+import wikiPediaSlice from './slices/wikiPediaSlice'
+import wikiBooksSlice from './slices/wikiBooksSlice'
+import wikiVersitySlice from './slices/wikiVersitySlice'
 
 const store = configureStore({
     reducer: {
-        data: wikiReducer,
+        wikiPedia: wikiPediaSlice,
+        wikiBooks: wikiBooksSlice,
+        wikiVersity: wikiVersitySlice,
     },
 })
 export default store

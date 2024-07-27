@@ -1,6 +1,10 @@
 import styles from './Home.module.css'
 import { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchWikiPediaData } from '../redux/slices/wikiPediaSlice'
+import { fetchWikiBooksData } from '../redux/slices/wikiBooksSlice'
+import { fetchWikiVersityData } from '../redux/slices/wikiVersitySlice'
 
 export default function Home() {
     const canvasRef = useRef(null)
@@ -59,6 +63,16 @@ export default function Home() {
     }
 
     let balls = []
+
+    const [query, setQuery] = useState('')
+    const dispatch = useDispatch()
+
+    const handleSearch = () => {
+        dispatch(fetchWikiPediaData(`${query} programming`))
+        dispatch(fetchWikiBooksData(query))
+        dispatch(fetchWikiVersityData(query))
+        setQuery('')
+    }
 
     useEffect(() => {
         const canvas = canvasRef.current
@@ -333,18 +347,25 @@ export default function Home() {
                                         </svg>
                                     </div>
                                     <input
-                                        type="search"
+                                        type="text"
+                                        value={query}
+                                        onChange={(e) => {
+                                            setQuery(e.target.value)
+                                        }}
                                         id="default-search"
                                         className="block p-6 pl-10 w-full text-xl text-navy rounded-lg border border-navy focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Search Python, Javascript..."
                                         required
                                     />
-                                    <button
-                                        type="submit"
-                                        className="text-white absolute right-2.5 bottom-4 bg-blue-800 hover:bg-blue-400 rounded-lg text-sm px-5 py-3"
-                                    >
-                                        Search
-                                    </button>
+                                    <Link to="content">
+                                        <button
+                                            type="submit"
+                                            className="text-white absolute right-2.5 bottom-4 bg-blue-800 hover:bg-blue-400 rounded-lg text-sm px-5 py-3"
+                                            onClick={handleSearch}
+                                        >
+                                            Search
+                                        </button>
+                                    </Link>
                                 </div>
                             </form>
                             <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>

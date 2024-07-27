@@ -1,0 +1,19 @@
+.midnight_border {
+    box-shadow: 4px 4px 1px rgb(0, 76, 84);
+}
+
+.black_border {
+    box-shadow: 4px 4px 1px rgb(0, 0, 0);
+}
+
+.seagreen_border {
+    box-shadow: 4px 4px 1px rgba(46, 139, 87, 1);
+}
+
+.parchment_border {
+    box-shadow: 4px 4px 1px rgb(252, 245, 229);
+}
+
+body {
+    background-color: #88d498;
+}
