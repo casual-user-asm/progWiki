@@ -17,3 +17,11 @@
 body {
     background-color: #88d498;
 }
+
+.truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Number of lines to show */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds "..." at the end of the text */
+}

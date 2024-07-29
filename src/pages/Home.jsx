@@ -21,7 +21,7 @@ export default function Home() {
         'JavaScript 😴',
         'Java 🛣️',
         'Ruby 🙂',
-        'C++ 🐖',
+        'C++ 🐃',
         'HTML 🌔',
         'CSS 🙃',
         'SQL 🦇',
@@ -71,7 +71,6 @@ export default function Home() {
         dispatch(fetchWikiPediaData(`${query} programming`))
         dispatch(fetchWikiBooksData(query))
         dispatch(fetchWikiVersityData(query))
-        setQuery('')
     }
 
     useEffect(() => {
@@ -309,12 +308,12 @@ export default function Home() {
                 <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-10">
                     <div className="bg-teagreen p-2 rounded shadow-lg w-[600px] h-[370px]">
                         <h1 className="text-[55px] text-midnightgreen m-3 text-center">
-                            Hey, bug buster! 🦔
+                            Hey, bug buster! 🐨
                         </h1>
                         <p className=" text-[25px] text-midnightgreen mb-8 text-center">
                             Want to access tech knowledge or just explore coding
                             curiosities? <br />
-                            Everything you need is right here! 🦕
+                            Everything you need is right here! 🏎️
                         </p>
 
                         <link

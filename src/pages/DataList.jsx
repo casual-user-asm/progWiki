@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from './DataList.module.css'
+import { Navigate } from 'react-router-dom'
 
 export default function DataList() {
     const { data, status, error } = useSelector((state) => state.wikiPedia)
@@ -76,16 +77,21 @@ export default function DataList() {
         )
     }
 
+    if (data.length === 0) {
+        return <Navigate to="/" />
+    }
+
     return (
         <div className="relative h-screen overflow-scroll snap-y snap-proximity">
             <div className="h-screen flex flex-col items-center justify-center bg-celadon snap-start">
                 <div className="relative m-16">
-                    <button
-                        className={`absolute text-xl py-1 px-3 -left-8 -top-2 -rotate-[10deg] border border-black ${styles.black_border} bg-midnightgreen text-white font-bold`}
-                    >
-                        ARTICLES!
-                    </button>
-
+                    <Link to="/articles">
+                        <button
+                            className={`absolute text-xl py-1 px-3 -left-8 -top-2 -rotate-[10deg] border border-black ${styles.black_border} bg-midnightgreen text-white font-bold`}
+                        >
+                            ARTICLES!
+                        </button>
+                    </Link>
                     <div
                         className={`${styles.midnight_border} p-8 border border-black bg-seagreen`}
                     >
@@ -101,7 +107,9 @@ export default function DataList() {
                                     rel="noopener noreferrer"
                                     className="bg-gray-100 text-black border-l-8 border-green-500 rounded-md px-3 py-2 flex flex-col"
                                 >
-                                    <div className="text-lg font-serif font-bold mb-2">
+                                    <div
+                                        className={`text-lg font-serif font-bold mb-2 ${styles.truncate}`}
+                                    >
                                         {el.title}
                                     </div>
                                     <div className="text-gray-500 font-thin text-sm">
@@ -114,22 +122,29 @@ export default function DataList() {
                                 </a>
                             ))}
                         </div>
+                        <Link
+                            class="absolute bottom-2 right-4 inline-flex items-center justify-center rounded-xl bg-midnightgreen py-2 px-3 font-dm text-sm font-medium text-white transition-transform duration-200 ease-in-out hover:scale-[1.02]"
+                            to="/"
+                        >
+                            Back to search
+                        </Link>
                     </div>
                 </div>
                 <p className="text-center text-black p-4 mt-4 font-bold text-lg">
                     Scroll Down To See Books 👇
                 </p>
             </div>
-            <div className="h-screen flex flex-col items-center justify-center bg-teagreen text-white snap-start">
+            <div className="h-100vh flex flex-col items-center justify-center bg-teagreen text-white snap-start">
                 <div className="relative m-16">
-                    <button
-                        className={`absolute text-xl py-1 px-3 -left-8 -top-2 -rotate-[10deg] border border-black ${styles.black_border} bg-parchment text-midnightgreen font-bold`}
-                    >
-                        BOOKS!
-                    </button>
-
+                    <Link to="/books">
+                        <button
+                            className={`absolute text-xl py-1 px-3 -left-8 -top-2 -rotate-[10deg] border border-black ${styles.black_border} bg-parchment text-midnightgreen font-bold`}
+                        >
+                            BOOKS!
+                        </button>
+                    </Link>
                     <div
-                        className={`${styles.parchment_border} p-8 border border-black bg-midnightgreen`}
+                        className={`${styles.parchment_border} p-8 md:p-10 border border-black bg-midnightgreen`}
                     >
                         <p className="text-lg mt-3 text-white font-bold">
                             👆 View more Books
@@ -137,7 +152,7 @@ export default function DataList() {
                         <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {bookData.slice(0, 9).map((el, index) => {
                                 return (
-                                    <div className="relative flex flex-col">
+                                    <div className="flex flex-col w-50 h-25">
                                         <div className="relative cursor-pointer dark:text-white">
                                             <span className="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-indigo-500 rounded-lg dark:bg-gray-200"></span>
                                             <a
@@ -147,7 +162,9 @@ export default function DataList() {
                                             >
                                                 <div className="relative p-6 bg-white dark:bg-gray-800 border-2 border-indigo-500 dark:border-gray-300 rounded-lg hover:scale-105 transition duration-500">
                                                     <div className="flex items-center">
-                                                        <h3 className="my-2 text-lg font-bold text-gray-800 dark:text-white">
+                                                        <h3
+                                                            className={`my-2 text-lg font-bold text-gray-800 dark:text-white ${styles.truncate}`}
+                                                        >
                                                             {el.title}
                                                         </h3>
                                                     </div>
@@ -166,6 +183,12 @@ export default function DataList() {
                                 )
                             })}
                         </div>
+                        <Link
+                            class="absolute bottom-2 right-4 inline-flex items-center justify-center rounded-xl bg-parchment py-2 px-3 font-dm text-sm font-medium text-midnightgreen transition-transform duration-200 ease-in-out hover:scale-[1.02]"
+                            to="/"
+                        >
+                            Back to search
+                        </Link>
                     </div>
                 </div>
                 <p className="text-center text-black p-4 mt-4 font-bold text-lg">
@@ -174,12 +197,13 @@ export default function DataList() {
             </div>
             <div className="h-screen flex flex-col items-center justify-center bg-seagreen text-white snap-start">
                 <div className="relative m-16">
-                    <button
-                        className={`absolute text-xl py-1 px-3 -left-8 -top-2 -rotate-[10deg] border border-black ${styles.black_border} bg-celadon text-midnightgreen font-bold`}
-                    >
-                        COURSES!
-                    </button>
-
+                    <Link to="/courses">
+                        <button
+                            className={`absolute text-xl py-1 px-3 -left-8 -top-2 -rotate-[10deg] border border-black ${styles.black_border} bg-celadon text-midnightgreen font-bold`}
+                        >
+                            COURSES!
+                        </button>
+                    </Link>
                     <div
                         className={`${styles.midnight_border} p-8 border border-black bg-teagreen`}
                     >
@@ -191,7 +215,7 @@ export default function DataList() {
                                 return (
                                     <div class="p-2 w-full">
                                         <a
-                                            href={`https://en.wikipedia.org/wiki/${el.title}`}
+                                            href={`https://en.wikiversity.org/wiki/${el.title}`}
                                             target="_blank"
                                         >
                                             <div class="bg-midnightgreen rounded flex p-4 h-[90px] items-center">
@@ -207,7 +231,9 @@ export default function DataList() {
                                                     <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                                                     <path d="M22 4L12 14.01l-3-3"></path>
                                                 </svg>
-                                                <span class="font-bold text-xl">
+                                                <span
+                                                    class={`font-bold text-xl ${styles.truncate}`}
+                                                >
                                                     {el.title}
                                                 </span>
                                             </div>
@@ -217,6 +243,12 @@ export default function DataList() {
                             })}
                         </div>
                     </div>
+                    <Link
+                        class="absolute bottom-2 right-4 inline-flex items-center justify-center rounded-xl bg-celadon py-2 px-3 font-dm text-sm font-medium text-black transition-transform duration-200 ease-in-out hover:scale-[1.02]"
+                        to="/"
+                    >
+                        Back to search
+                    </Link>
                 </div>
             </div>
         </div>
