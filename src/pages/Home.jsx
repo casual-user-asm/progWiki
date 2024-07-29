@@ -1,7 +1,7 @@
 import styles from './Home.module.css'
 import { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { fetchWikiPediaData } from '../redux/slices/wikiPediaSlice'
 import { fetchWikiBooksData } from '../redux/slices/wikiBooksSlice'
 import { fetchWikiVersityData } from '../redux/slices/wikiVersitySlice'
@@ -77,6 +77,7 @@ export default function Home() {
         const canvas = canvasRef.current
         const ctx = canvas.getContext('2d')
         ctxRef.current = ctx
+        document.title = 'ProgLearn Hub'
 
         const can_w = window.innerWidth
         const can_h = window.innerHeight

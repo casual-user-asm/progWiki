@@ -2,11 +2,16 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styles from './DataList.module.css'
 import { Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export default function AllBooks() {
     const { bookData, bookStatus, bookError } = useSelector(
         (state) => state.wikiBooks
     )
+
+    useEffect(() => {
+        document.title = 'All Books'
+    }, [])
 
     if (bookData.length === 0) {
         return <Navigate to="/" />

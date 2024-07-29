@@ -2,11 +2,16 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styles from './DataList.module.css'
 import { Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export default function AllBooks() {
     const { versityData, versityStatus, versityError } = useSelector(
         (state) => state.wikiVersity
     )
+
+    useEffect(() => {
+        document.title = 'All Courses'
+    }, [])
 
     if (versityData.length === 0) {
         return <Navigate to="/" />

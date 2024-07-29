@@ -2,9 +2,14 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styles from './DataList.module.css'
 import { Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export default function AllArticles() {
     const { data, status, error } = useSelector((state) => state.wikiPedia)
+
+    useEffect(() => {
+        document.title = 'All Articles'
+    }, [])
 
     if (data.length === 0) {
         return <Navigate to="/" />
