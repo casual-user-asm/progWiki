@@ -353,7 +353,7 @@ export default function Home() {
                                             setQuery(e.target.value)
                                         }}
                                         id="default-search"
-                                        className="block p-6 pl-10 w-full text-xl text-navy rounded-lg border border-navy focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        className="block p-6 pl-10 w-full text-xl text-navy rounded-lg border border-navy focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Search Python, Javascript..."
                                         required
                                     />
